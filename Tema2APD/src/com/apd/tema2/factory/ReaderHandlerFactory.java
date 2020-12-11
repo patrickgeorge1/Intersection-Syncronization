@@ -39,11 +39,12 @@ public class ReaderHandlerFactory {
                 public void handle(final String handlerType, final BufferedReader br) throws IOException {
                     // To parse input line use:
                     Main.intersection = IntersectionFactory.getIntersection("simple_n_roundabout");
+                    SimpleNRoundabout s = (SimpleNRoundabout) Main.intersection;
 
                     String[] line = br.readLine().split(" ");
                     int maxCar = Integer.parseInt(line[0]);
                     int time = Integer.parseInt(line[1]);
-                    SimpleNRoundabout s = (SimpleNRoundabout) Main.intersection;
+
                     s.setMillisecondsToWait(time);
                     s.setMaxCarInRoundAbout(maxCar);
                     s.setSemaphore(maxCar);
@@ -53,11 +54,12 @@ public class ReaderHandlerFactory {
                 @Override
                 public void handle(final String handlerType, final BufferedReader br) throws IOException {
                     Main.intersection = IntersectionFactory.getIntersection("simple_strict_1_car_roundabout");
+                    SimpleStrict1CarRoundabout s = (SimpleStrict1CarRoundabout) Main.intersection;
 
                     String[] line = br.readLine().split(" ");
-                    SimpleStrict1CarRoundabout s = (SimpleStrict1CarRoundabout) Main.intersection;
                     int maxLanes = Integer.parseInt(line[0]);
                     int time = Integer.parseInt(line[1]);
+
                     s.setMillisecondsToWait(time);
                     s.setNumberOfLanes(maxLanes);
 
@@ -67,9 +69,9 @@ public class ReaderHandlerFactory {
                 @Override
                 public void handle(final String handlerType, final BufferedReader br) throws IOException {
                     Main.intersection = IntersectionFactory.getIntersection("simple_strict_x_car_roundabout");
+                    SimpleStrictXCarRoundabout s = (SimpleStrictXCarRoundabout) Main.intersection;
 
                     String[] line = br.readLine().split(" ");
-                    SimpleStrictXCarRoundabout s = (SimpleStrictXCarRoundabout) Main.intersection;
                     int maxLanes = Integer.parseInt(line[0]);
                     int time = Integer.parseInt(line[1]);
                     int maxCarPerLane = Integer.parseInt(line[2]);
@@ -83,7 +85,17 @@ public class ReaderHandlerFactory {
             case "simple_max_x_car_roundabout" -> new ReaderHandler() {
                 @Override
                 public void handle(final String handlerType, final BufferedReader br) throws IOException {
-                    
+                    Main.intersection = IntersectionFactory.getIntersection("simple_max_x_car_roundabout");
+                    SimpleMaxXCarRoundabout s = (SimpleMaxXCarRoundabout) Main.intersection;
+
+                    String[] line = br.readLine().split(" ");
+                    int maxLanes = Integer.parseInt(line[0]);
+                    int time = Integer.parseInt(line[1]);
+                    int maxCarPerLane = Integer.parseInt(line[2]);
+
+                    s.setMillisecondsToWait(time);
+                    s.setMaxCarsPerLane(maxCarPerLane);
+                    s.setNumberOfLanes(maxLanes);
                 }
             };
             case "priority_intersection" -> new ReaderHandler() {

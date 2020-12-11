@@ -64,6 +64,7 @@ public class IntersectionHandlerFactory {
                     } // NU MODIFICATI
 
                     // Continuati de aici
+                    Main.intersection.carWait(car);
                 }
             };
             case "priority_intersection" -> new IntersectionHandler() {
@@ -78,30 +79,31 @@ public class IntersectionHandlerFactory {
                     } // NU MODIFICATI
 
                     // Continuati de aici
+                    // Main.intersection.carWait(car);
                 }
             };
             case "crosswalk" -> new IntersectionHandler() {
                 @Override
                 public void handle(Car car) {
-                    
+                    // Main.intersection.carWait(car);
                 }
             };
             case "simple_maintenance" -> new IntersectionHandler() {
                 @Override
                 public void handle(Car car) {
-                    
+                    // Main.intersection.carWait(car);
                 }
             };
             case "complex_maintenance" -> new IntersectionHandler() {
                 @Override
                 public void handle(Car car) {
-                    
+                    // Main.intersection.carWait(car);
                 }
             };
             case "railroad" -> new IntersectionHandler() {
                 @Override
                 public void handle(Car car) {
-                    
+                    // Main.intersection.carWait(car);
                 }
             };
             default -> null;
