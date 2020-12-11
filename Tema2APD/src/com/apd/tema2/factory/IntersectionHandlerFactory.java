@@ -43,13 +43,13 @@ public class IntersectionHandlerFactory {
             case "simple_strict_1_car_roundabout" -> new IntersectionHandler() {
                 @Override
                 public void handle(Car car) {
-
+                    Main.intersection.carWait(car);
                 }
             };
             case "simple_strict_x_car_roundabout" -> new IntersectionHandler() {
                 @Override
                 public void handle(Car car) {
-
+                    Main.intersection.carWait(car);
                 }
             };
             case "simple_max_x_car_roundabout" -> new IntersectionHandler() {
