@@ -66,7 +66,18 @@ public class ReaderHandlerFactory {
             case "simple_strict_x_car_roundabout" -> new ReaderHandler() {
                 @Override
                 public void handle(final String handlerType, final BufferedReader br) throws IOException {
+                    Main.intersection = IntersectionFactory.getIntersection("simple_strict_x_car_roundabout");
 
+                    String[] line = br.readLine().split(" ");
+                    SimpleStrictXCarRoundabout s = (SimpleStrictXCarRoundabout) Main.intersection;
+                    int maxLanes = Integer.parseInt(line[0]);
+                    int time = Integer.parseInt(line[1]);
+                    int maxCarPerLane = Integer.parseInt(line[2]);
+
+                    s.setMillisecondsToWait(time);
+                    s.setMaxCarsPerLane(maxCarPerLane);
+                    s.setNumberOfLanes(maxLanes);
+                    s.initBarrierBeforeNextRound();
                 }
             };
             case "simple_max_x_car_roundabout" -> new ReaderHandler() {

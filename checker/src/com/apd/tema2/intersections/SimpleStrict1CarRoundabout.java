@@ -9,7 +9,6 @@ import java.util.concurrent.Semaphore;
 
 public class SimpleStrict1CarRoundabout implements Intersection {
 	private int millisecondsToWait;
-	private int maxCarInRoundAbout;
 	private int numberOfLanes;
 	private Semaphore[] lanesSemaphore;
 
@@ -34,14 +33,6 @@ public class SimpleStrict1CarRoundabout implements Intersection {
 
 	public void setMillisecondsToWait(int millisecondsToWait) {
 		this.millisecondsToWait = millisecondsToWait;
-	}
-
-	public int getMaxCarInRoundAbout() {
-		return maxCarInRoundAbout;
-	}
-
-	public void setMaxCarInRoundAbout(int maxCarInRoundAbout) {
-		this.maxCarInRoundAbout = maxCarInRoundAbout;
 	}
 
 	public int getNumberOfLanes() {
