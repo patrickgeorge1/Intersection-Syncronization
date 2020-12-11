@@ -38,7 +38,15 @@ public class ReaderHandlerFactory {
                 @Override
                 public void handle(final String handlerType, final BufferedReader br) throws IOException {
                     // To parse input line use:
-                    // String[] line = br.readLine().split(" ");
+                    Main.intersection = IntersectionFactory.getIntersection("simple_n_roundabout");
+
+                    String[] line = br.readLine().split(" ");
+                    int maxCar = Integer.parseInt(line[0]);
+                    int time = Integer.parseInt(line[1]);
+                    SimpleNRoundabout s = (SimpleNRoundabout) Main.intersection;
+                    s.setMillisecondsToWait(time);
+                    s.setMaxCarInRoundAbout(maxCar);
+                    s.setSemaphore(maxCar);
                 }
             };
             case "simple_strict_1_car_roundabout" -> new ReaderHandler() {

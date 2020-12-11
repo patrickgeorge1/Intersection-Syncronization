@@ -14,6 +14,7 @@ public class IntersectionFactory {
 
     static {
          cache.put("simple_semaphore", new SimpleSemaphore());
+         cache.put("simple_n_roundabout", new SimpleNRoundabout());
     }
 
     public static Intersection getIntersection(String handlerType) {
