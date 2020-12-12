@@ -85,7 +85,7 @@ public class IntersectionHandlerFactory {
             case "crosswalk" -> new IntersectionHandler() {
                 @Override
                 public void handle(Car car) {
-                    // Main.intersection.carWait(car);
+                    Main.intersection.carWait(car);
                 }
             };
             case "simple_maintenance" -> new IntersectionHandler() {

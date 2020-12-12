@@ -114,7 +114,14 @@ public class ReaderHandlerFactory {
             case "crosswalk" -> new ReaderHandler() {
                 @Override
                 public void handle(final String handlerType, final BufferedReader br) throws IOException {
-                    
+                    Main.intersection = IntersectionFactory.getIntersection("crosswalk");
+
+                    String[] line = br.readLine().split(" ");
+                    int time = Integer.parseInt(line[0]);
+                    int maxPedestrians = Integer.parseInt(line[1]);
+
+                    Main.pedestrians = new Pedestrians(time, maxPedestrians);
+
                 }
             };
             case "simple_maintenance" -> new ReaderHandler() {
