@@ -22,8 +22,8 @@ Car 8 has reached the roundabout from lane 1
 Car 23 has reached the roundabout from lane 1
 Car 12 has reached the roundabout from lane 0
 Car 27 has reached the roundabout from lane 0
-Car 16 has reached the roundabout from lane 1
 Car 1 has reached the roundabout from lane 2
+Car 16 has reached the roundabout from lane 1
 Car 6 has reached the roundabout from lane 2
 Car 21 has reached the roundabout from lane 2
 Car 25 has reached the roundabout from lane 0
@@ -32,8 +32,8 @@ Car 17 has reached the roundabout from lane 1
 Car 2 has reached the roundabout from lane 2
 Car 11 has reached the roundabout from lane 0
 Car 26 has reached the roundabout from lane 0
-Car 14 has exited the roundabout after 3 seconds
 Car 29 has exited the roundabout after 3 seconds
+Car 14 has exited the roundabout after 3 seconds
 Car 15 has entered the roundabout from lane 0
 Car 0 has entered the roundabout from lane 0
 Car 24 has exited the roundabout after 3 seconds
@@ -67,11 +67,11 @@ Car 4 has exited the roundabout after 3 seconds
 Car 18 has entered the roundabout from lane 1
 Car 3 has entered the roundabout from lane 1
 Car 21 has exited the roundabout after 3 seconds
-Car 2 has exited the roundabout after 3 seconds
 Car 20 has entered the roundabout from lane 2
+Car 2 has exited the roundabout after 3 seconds
 Car 5 has entered the roundabout from lane 2
-Car 25 has exited the roundabout after 3 seconds
 Car 10 has exited the roundabout after 3 seconds
+Car 25 has exited the roundabout after 3 seconds
 Car 11 has entered the roundabout from lane 0
 Car 26 has entered the roundabout from lane 0
 Car 18 has exited the roundabout after 3 seconds

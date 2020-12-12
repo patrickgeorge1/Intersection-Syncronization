@@ -16,13 +16,17 @@ public class SimpleSemaphore implements Intersection {
 
 	@Override
 	public void carWait(Car car) {
-		System.out.println("Car " + car.getId() + " has reached the semaphore, now waiting...");
 		try {
+			// Reach
+			System.out.println("Car " + car.getId() + " has reached the semaphore, now waiting...");
 			barrier.await();
 			Thread.sleep(car.getWaitingTime());
+
+			// Exit
+			System.out.println("Car "+ car.getId() +" has waited enough, now driving...");
+
 		} catch (InterruptedException | BrokenBarrierException e) {
 			e.printStackTrace();
 		}
-		System.out.println("Car "+ car.getId() +" has waited enough, now driving...");
 	}
 }

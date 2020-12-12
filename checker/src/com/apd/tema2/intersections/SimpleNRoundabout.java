@@ -21,16 +21,19 @@ public class SimpleNRoundabout implements Intersection {
 
 	@Override
 	public void carWait(Car car) {
-		System.out.println("Car " + car.getId() + " has reached the roundabout, now waiting...");
 		try {
+			// Reach
+			System.out.println("Car " + car.getId() + " has reached the roundabout, now waiting...");
 			barrier.await();
-			// Thread.sleep(car.getWaitingTime());
+
+			// Enter
 			semaphore.acquire();
 			System.out.println("Car " + car.getId() + " has entered the roundabout");
 			Thread.sleep(millisecondsToWait);
+
+			// Exit
 			System.out.println("Car " + car.getId() + " has exited the roundabout after 2 seconds");
 			semaphore.release();
-
 
 		} catch (InterruptedException | BrokenBarrierException e) {
 			e.printStackTrace();

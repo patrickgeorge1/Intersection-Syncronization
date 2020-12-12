@@ -23,9 +23,9 @@ public class SimpleStrictXCarRoundabout implements Intersection {
 
 	@Override
 	public void carWait(Car car) {
-		System.out.println("Car " + car.getId() + " has reached the roundabout, now waiting...");
 		try {
 			// Reach
+			System.out.println("Car " + car.getId() + " has reached the roundabout, now waiting...");
 			barrierToReach.await();
 
 			// Select
