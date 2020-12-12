@@ -7,10 +7,8 @@ import java.util.concurrent.LinkedBlockingDeque;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class PriorityIntersection implements Intersection  {
-	private int millisecondsToWait;
 	private final AtomicInteger numOfPriorityCardInIntersection = new AtomicInteger(0);
 	private final LinkedBlockingDeque<Car> lowPriorityCars = new LinkedBlockingDeque<>();
-	private static final Object lock = new Object();
 
 	@Override
 	public void carWait(Car car) {
@@ -37,14 +35,6 @@ public class PriorityIntersection implements Intersection  {
 			}
 			else exitIntersection(car);
 		} catch (InterruptedException e) { e.printStackTrace(); }
-	}
-
-	public int getMillisecondsToWait() {
-		return millisecondsToWait;
-	}
-
-	public void setMillisecondsToWait(int millisecondsToWait) {
-		this.millisecondsToWait = millisecondsToWait;
 	}
 
 	/**
