@@ -2,7 +2,7 @@
 
 echo "Start time: $(date)"
 
-FOLDERS=../tests/simple_max_x_car_roundabout
+FOLDERS=../tests/*
 HW_PATH=com/apd/tema2/Main
 ROOT=./src
 ERR=./err
