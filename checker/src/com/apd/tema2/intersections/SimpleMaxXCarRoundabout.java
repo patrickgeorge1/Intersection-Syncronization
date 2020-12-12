@@ -15,6 +15,8 @@ public class SimpleMaxXCarRoundabout implements Intersection {
 	@Override
 	public void carWait(Car car) {
 		try {
+			// Reach
+			Thread.sleep(car.getWaitingTime());  // TODO change
 			System.out.println("Car " + car.getId() + " has reached the roundabout from lane " + car.getStartDirection());
 
 			// Enter
