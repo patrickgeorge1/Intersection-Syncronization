@@ -4,7 +4,6 @@ import com.apd.tema2.entities.Car;
 import com.apd.tema2.entities.Intersection;
 
 import java.util.concurrent.LinkedBlockingDeque;
-import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class PriorityIntersection implements Intersection  {
@@ -16,62 +15,28 @@ public class PriorityIntersection implements Intersection  {
 	@Override
 	public void carWait(Car car) {
 		try {
-
 			// Reach
-			if (car.getPriority() == 1) {
-				System.out.println("Car " + car.getId() + " with low priority is trying to enter the intersection...");
-			}
+			tryToEnter(car);
 
 			// Enter
-			if (car.getPriority() == 1) {
-				// no priority cars in intersection
-				if (numOfPriorityCardInIntersection.get() == 0) {
-					System.out.println("Car " + car.getId() + " with low priority has entered the intersection");
-				} else {
-
-					// wait untill intersection is free
-					synchronized (car) {
-						synchronized (lowPriorityCars) {
-							lowPriorityCars.addLast(car);
-						}
-						car.wait();
-					}
-					// nothing will execute next, because print is made in last high priority car
-				}
+			if (car.hasLowPriority()) {
+				if (noPriorityCarsInIntersection()) enterIntersection(car);
+				else addLowPriorityCarToQueue(car);
 			} else {
-				System.out.println("Car " + car.getId() + " with high priority has entered the intersection");
-				numOfPriorityCardInIntersection.addAndGet(1);
+				enterIntersection(car);
+				intersectionIncreasePriorityCars();
 				Thread.sleep(2000);
 			}
 
 			// Exit
-			if (car.getPriority() != 1) {
-				System.out.println("Car " + car.getId() + " with high priority has exited the intersection");
-				int value = numOfPriorityCardInIntersection.addAndGet(-1);
+			if (car.hasHighPriority()) {
+				exitIntersection(car);
 
-				// last high priority car must let other cars enter the intersection
-				// in their arrival chronological order
-				if (value == 0){
-					synchronized (lowPriorityCars) {
-						while (!lowPriorityCars.isEmpty()) {
-							Car lowCar = lowPriorityCars.poll();
-							// let car enter the execution
-							synchronized (lowCar) {
-								// print here, because some low priority cars will not respect the order otherwise
-								System.out.println("Car " + lowCar.getId() + " with low priority has entered the intersection");
-								lowCar.notify();
-							}
-						}
-					}
-
-				}
+				// last high priority car => low priority queued cars will pass
+				if (intersectionDecreasePriorityCars() == 0) intersectionPassLowPriorityQueue();
 			}
-
-
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-
+			else exitIntersection(car);
+		} catch (InterruptedException e) { e.printStackTrace(); }
 	}
 
 	public int getMillisecondsToWait() {
@@ -80,5 +45,76 @@ public class PriorityIntersection implements Intersection  {
 
 	public void setMillisecondsToWait(int millisecondsToWait) {
 		this.millisecondsToWait = millisecondsToWait;
+	}
+
+	/**
+	 * add low priority car to the queue
+	 */
+	public void addLowPriorityCarToQueue(Car car) {
+		synchronized (lowPriorityCars) {
+			lowPriorityCars.addLast(car);
+		}
+	}
+
+	/**
+	 * check if there are priority cars in intersections
+	 */
+	public boolean noPriorityCarsInIntersection() {
+		return (numOfPriorityCardInIntersection.get() == 0);
+	}
+
+	/**
+	 *  output attempting message
+	 */
+	public void tryToEnter(Car car) {
+		if (car.hasLowPriority())
+			System.out.println("Car " + car.getId() + " with low priority is trying to enter the intersection...");
+	}
+
+	/**
+	 * output proper message depending on car priority type
+	 */
+	public void enterIntersection(Car car) {
+		if (car.hasLowPriority())
+			System.out.println("Car " + car.getId() + " with low priority has entered the intersection");
+		else
+			System.out.println("Car " + car.getId() + " with high priority has entered the intersection");
+	}
+
+	/**
+	 * output  message
+	 */
+	public void exitIntersection(Car car) {
+		if (car.hasHighPriority())
+			System.out.println("Car " + car.getId() + " with high priority has exited the intersection");
+	}
+
+	/**
+	 * increment number of priority cars from intersection and get
+	 */
+	public int intersectionIncreasePriorityCars() {
+		return numOfPriorityCardInIntersection.addAndGet(1);
+	}
+
+	/**
+	 * decrement number of priority cars from intersection and get
+	 */
+	public int intersectionDecreasePriorityCars() {
+		return numOfPriorityCardInIntersection.addAndGet(-1);
+	}
+
+	/**
+	 * enter all low priority waiting cars in intersection
+	 */
+	public void intersectionPassLowPriorityQueue() {
+		synchronized (lowPriorityCars) {
+			while (!lowPriorityCars.isEmpty()) {
+				Car lowCar = lowPriorityCars.poll();
+
+				// print, considering that car traversed the intersection
+				enterIntersection(lowCar);
+				exitIntersection(lowCar);
+			}
+		}
 	}
 }

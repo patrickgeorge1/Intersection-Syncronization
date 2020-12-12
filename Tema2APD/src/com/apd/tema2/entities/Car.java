@@ -52,4 +52,7 @@ public class Car implements Runnable {
     public int getPriority() {
         return priority;
     }
+
+    public boolean hasLowPriority() { return (priority == 1);}
+    public boolean hasHighPriority() { return (priority != 1);}
 }

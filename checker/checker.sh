@@ -2,7 +2,7 @@
 
 echo "Start time: $(date)"
 
-FOLDERS=../tests/crosswalk
+FOLDERS=../tests/priority_intersection
 HW_PATH=com/apd/tema2/Main
 ROOT=./src
 ERR=./err
