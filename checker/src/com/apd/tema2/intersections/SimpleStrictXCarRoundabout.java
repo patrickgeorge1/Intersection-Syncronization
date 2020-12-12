@@ -80,6 +80,6 @@ public class SimpleStrictXCarRoundabout implements Intersection {
 	}
 
 	public void initBarrierBeforeNextRound() {
-		barrierBeforeNextRound = new CyclicBarrier(numberOfLanes * maxCarsPerLane);
+			barrierBeforeNextRound = new CyclicBarrier(numberOfLanes * maxCarsPerLane);
 	}
 }

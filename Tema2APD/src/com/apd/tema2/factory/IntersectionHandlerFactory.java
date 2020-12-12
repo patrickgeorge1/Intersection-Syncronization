@@ -79,7 +79,7 @@ public class IntersectionHandlerFactory {
                     } // NU MODIFICATI
 
                     // Continuati de aici
-                    // Main.intersection.carWait(car);
+                     Main.intersection.carWait(car);
                 }
             };
             case "crosswalk" -> new IntersectionHandler() {
