@@ -10,17 +10,20 @@ public class Crosswalk implements Intersection {
 	private final ConcurrentHashMap<Integer, SemaphoreColor> carsSemaphoreColor = new ConcurrentHashMap<>();
 
 	@Override
-	public  void carWait(Car car) {
+	public void carWait(Car car) {
 		while (!Main.pedestrians.isFinished()) {
 			// get previous color
 			SemaphoreColor color = carsSemaphoreColor.getOrDefault(car.getId(), new SemaphoreColor());
 
 			// try to pass and display message only on color update
-			if (Main.pedestrians.isPass()) {
-				if (color.setRed()) System.out.println("Car " + car.getId() + " has now red light");
-			} else {
-				if (color.setGreen()) System.out.println("Car " + car.getId() + " has now green light");
+			synchronized (this) {
+				if (Main.pedestrians.isPass()) {
+					if (color.setRed()) System.out.println("Car " + car.getId() + " has now red light");
+				} else {
+					if (color.setGreen()) System.out.println("Car " + car.getId() + " has now green light");
+				}
 			}
+
 
 			// update car message
 			carsSemaphoreColor.put(car.getId(), color);

@@ -52,6 +52,9 @@ public class SimpleStrict1CarRoundabout implements Intersection {
 		return numberOfLanes;
 	}
 
+	/**
+	 * set number of lanes and init the semaphores and the barrier
+	 */
 	public void setNumberOfLanes(int numberOfLanes) {
 		this.numberOfLanes = numberOfLanes;
 

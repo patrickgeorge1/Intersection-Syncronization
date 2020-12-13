@@ -103,12 +103,6 @@ public class ReaderHandlerFactory {
                 public void handle(final String handlerType, final BufferedReader br) throws IOException {
                     Main.intersection = IntersectionFactory.getIntersection("priority_intersection");
                     PriorityIntersection s = (PriorityIntersection) Main.intersection;
-
-                    String[] line = br.readLine().split(" ");
-                    int time = Integer.parseInt(line[0]);
-
-                    s.setMillisecondsToWait(time);
-
                 }
             };
             case "crosswalk" -> new ReaderHandler() {
