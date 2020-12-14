@@ -1,11 +1,11 @@
-Simple semaphore :
+Simple semaphore:
     1.) wait until all cars print their reach message
         using a barrier
     2.) wait car time
     3.) print the exit message
 
 
-Simple n roundabout :
+Simple n roundabout:
     1.) wait until all cars print their reach message
         using a barrier
     2.) print the enter message after the car has
@@ -65,3 +65,35 @@ Priority intersection:
                 "numOfPriorityCardInIntersection" > 0
                 so add this car in queue and return;
 
+    3.) exit
+        high priority cars will
+        decrease "numOfPriorityCardInIntersection"
+        print the exit message
+             !!!!  and  !!!!
+        if "numOfPriorityCardInIntersection" == 0
+        print exit message for all the low priority cars
+        in queue, and pop them out
+
+
+Crosswalk:
+    I will execute carWait() as long as we have pedestrians
+    that did not passed.
+    * = look at the previous shown color for the car.
+    If the pedestrians are passing show red coller if it s
+    different from *, or green otherwise
+    Update the color and repeat.
+
+
+Simple maintenance:
+    Print reach message
+    Add to direction queue
+    Try to pass the direction semaphore
+    Print enter message and remove from queue
+    .....
+
+
+
+Railroad:
+    Print and add in queue, both in one atom synchronize
+    Wait for everybody to arrive, and print train message
+    Remove from queue and print, both in one atom synchronize
