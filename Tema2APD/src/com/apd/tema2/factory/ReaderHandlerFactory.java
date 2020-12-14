@@ -138,7 +138,7 @@ public class ReaderHandlerFactory {
             case "railroad" -> new ReaderHandler() {
                 @Override
                 public void handle(final String handlerType, final BufferedReader br) throws IOException {
-                    
+                    Main.intersection = IntersectionFactory.getIntersection("railroad");
                 }
             };
             default -> null;
