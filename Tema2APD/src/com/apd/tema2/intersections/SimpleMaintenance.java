@@ -42,11 +42,9 @@ public class SimpleMaintenance implements Intersection {
 	public void change_direction() {
 		if (priorityDirection == 0) {
 			priorityDirection = 1;
-			//System.out.println("CHANGE -> now priority is " + priorityDirection);
 			semaphore1.release(maxCarsToPass);
 		} else {
 			priorityDirection = 0;
-			//System.out.println("CHANGE -> now priority is " + priorityDirection);
 			semaphore0.release(maxCarsToPass);
 		}
 

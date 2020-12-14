@@ -22,8 +22,6 @@ public class Crosswalk implements Intersection {
 				if (color.setGreen()) System.out.println("Car " + car.getId() + " has now green light");
 			}
 
-
-
 			// update car message
 			carsSemaphoreColor.put(car.getId(), color);
 		}

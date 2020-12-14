@@ -2,6 +2,7 @@ package com.apd.tema2.intersections;
 
 import com.apd.tema2.entities.Car;
 import com.apd.tema2.entities.Intersection;
+import com.apd.tema2.utils.Constants;
 
 import java.util.concurrent.LinkedBlockingDeque;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -23,7 +24,7 @@ public class PriorityIntersection implements Intersection  {
 			} else {
 				enterIntersection(car);
 				intersectionIncreasePriorityCars();
-				Thread.sleep(2000);
+				Thread.sleep(Constants.PEDESTRIAN_PASSING_TIME);
 			}
 
 			// Exit

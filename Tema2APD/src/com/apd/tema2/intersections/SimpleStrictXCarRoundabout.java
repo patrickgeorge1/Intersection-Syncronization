@@ -50,16 +50,8 @@ public class SimpleStrictXCarRoundabout implements Intersection {
 
 	}
 
-	public int getMillisecondsToWait() {
-		return millisecondsToWait;
-	}
-
 	public void setMillisecondsToWait(int millisecondsToWait) {
 		this.millisecondsToWait = millisecondsToWait;
-	}
-
-	public int getNumberOfLanes() {
-		return numberOfLanes;
 	}
 
 	public void setNumberOfLanes(int numberOfLanes) {
@@ -69,10 +61,6 @@ public class SimpleStrictXCarRoundabout implements Intersection {
 		for (int i = 0; i < numberOfLanes + 1; i++) {
 			lanesSemaphore[i] = new Semaphore(maxCarsPerLane);
 		}
-	}
-
-	public int getMaxCarsPerLane() {
-		return maxCarsPerLane;
 	}
 
 	public void setMaxCarsPerLane(int maxCarsPerLane) {

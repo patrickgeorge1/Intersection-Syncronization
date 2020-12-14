@@ -23,7 +23,6 @@ public class Railroad implements Intersection {
 		// enter
 		enter(car);
 
-
 		// wait for the train
 		try {
 			barrier.await();
@@ -39,8 +38,6 @@ public class Railroad implements Intersection {
 
 		exit(car);
 	}
-
-
 
 	/**
 	 * print the railroad enter message, and add in queue

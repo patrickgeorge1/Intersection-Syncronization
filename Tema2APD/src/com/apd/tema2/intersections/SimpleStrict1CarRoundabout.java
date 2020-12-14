@@ -20,13 +20,11 @@ public class SimpleStrict1CarRoundabout implements Intersection {
 			// Reach
 			System.out.println("Car " + car.getId() + " has reached the roundabout");
 
-
 			// Enter
 			lanesSemaphore[car.getStartDirection()].acquire();
 			System.out.println("Car " + car.getId() + " has entered the roundabout from lane " + car.getStartDirection());
 			Thread.sleep(millisecondsToWait);
 			barrier.await();
-
 
 			// Exit
 			System.out.println("Car " + car.getId() + " has exited the roundabout after " + (millisecondsToWait / 1000) + " seconds");
@@ -40,16 +38,8 @@ public class SimpleStrict1CarRoundabout implements Intersection {
 
 	}
 
-	public int getMillisecondsToWait() {
-		return millisecondsToWait;
-	}
-
 	public void setMillisecondsToWait(int millisecondsToWait) {
 		this.millisecondsToWait = millisecondsToWait;
-	}
-
-	public int getNumberOfLanes() {
-		return numberOfLanes;
 	}
 
 	/**
