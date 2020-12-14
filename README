@@ -89,7 +89,10 @@ Simple maintenance:
     Add to direction queue
     Try to pass the direction semaphore
     Print enter message and remove from queue
-    .....
+    Wait to assure that max cars from this direction passed
+    The last cars from this direction batch will tell
+    the intersection to let a batch from other direction, by
+    giving permits to the opposite semaphore
 
 
 
@@ -97,3 +100,9 @@ Railroad:
     Print and add in queue, both in one atom synchronize
     Wait for everybody to arrive, and print train message
     Remove from queue and print, both in one atom synchronize
+    !Note : here I m using synchronized at direction level,
+    not at instance level, to make sure that both directions
+    can be processed simultaneously (enter, exit)
+
+
+Used CyclicBarriers, Semaphore, AtomicInteger, Concurrent data structures

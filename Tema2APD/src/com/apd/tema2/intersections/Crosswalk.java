@@ -16,7 +16,6 @@ public class Crosswalk implements Intersection {
 			SemaphoreColor color = carsSemaphoreColor.getOrDefault(car.getId(), new SemaphoreColor());
 
 			// try to pass and display message only on color update
-
 			if (Main.pedestrians.isPass()) {
 				if (color.setRed()) System.out.println("Car " + car.getId() + " has now red light");
 			} else {
