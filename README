@@ -1,0 +1,67 @@
+Simple semaphore :
+    1.) wait until all cars print their reach message
+        using a barrier
+    2.) wait car time
+    3.) print the exit message
+
+
+Simple n roundabout :
+    1.) wait until all cars print their reach message
+        using a barrier
+    2.) print the enter message after the car has
+        passed the semaphore
+    3.) wait car time
+    4.) print the exit message and release the semaphore
+
+
+Simple strict 1 car roundabout:
+    1.) print the reach message
+    2.) print the enter message after the car has
+        passed the semaphore for his direction
+    3.) wait car time
+    4.) wait for cars from intersection to reach this point
+    5.) print the exit message after the car has
+    6.) wait for cars from intersection to reach this point
+    7.) release the semaphore
+
+
+
+Simple strict x car roundabout:
+    1.) print the reach message
+    2.) wait for cars to reach this point
+    3.) wait for X cars from your lane to enter the intersection
+        after passing the semaphore
+    4.) print exit message
+    5.) wait for cars to reach this point
+    6.) wait for X cars from your lane to exit the intersection
+        and release the semaphore
+
+
+
+
+Simple max x car roundabout:
+   1.) print the reach message
+   2.) try to pass the semaphore of this lane
+   3.) print the enter message
+   4.) wait car time
+   5.) print the exit message
+   6.) release the semaphore of this lane
+
+
+
+Priority intersection:
+    1.) print try to enter only for low priority
+    2.) enter
+        - high priority car will print the message,
+          increase numOfPriorityCardInIntersection"
+          and sleep 2 seconds
+        - low priority car :
+            a .) no other high priority cars in
+                intersection ==> variable
+                "numOfPriorityCardInIntersection" == 0
+                so print immediately the enter message
+            b.) other high priority cars in
+                intersection ==> variable
+                "numOfPriorityCardInIntersection" > 0
+                so add this car in queue and return;
+

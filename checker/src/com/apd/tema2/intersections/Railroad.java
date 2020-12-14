@@ -43,7 +43,7 @@ public class Railroad implements Intersection {
 
 
 	/**
-	 * print the railroad enter message
+	 * print the railroad enter message, and add in queue
 	 */
 	public void enter(Car car) {
 		if (car.getStartDirection() == 0) {
@@ -60,7 +60,7 @@ public class Railroad implements Intersection {
 	}
 
 	/**
-	 * print the railroad exit message
+	 * print the railroad exit message, and delete from queue
 	 */
 	public void exit(Car car) {
 		Car leavingCar;
