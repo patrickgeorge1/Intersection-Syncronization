@@ -21,10 +21,7 @@ public class Railroad implements Intersection {
 	@Override
 	public void carWait(Car car) {
 		// enter
-		synchronized (this) {
-			enter(car);
-			addToQueue(car);
-		}
+		enter(car);
 
 
 		// wait for the train
@@ -38,46 +35,45 @@ public class Railroad implements Intersection {
 				trainPassed = true;
 				System.out.println("The train has passed, cars can now proceed");
 			}
-
-			Car leavingCar = removeFromQueue(car);
-			exit(leavingCar);
 		}
-	}
 
-	/**
-	 *  add car to its direction queue
-	 */
-	public void addToQueue(Car car) {
-		if (car.getStartDirection()  == 0) {
-			direction0.addLast(car);
-		} else {
-			direction1.addLast(car);
-		}
-	}
-
-	/**
-	 *  remove car from its direction queue
-	 */
-	public Car removeFromQueue(Car car) {
-		if (car.getStartDirection()  == 0) {
-			return direction0.removeFirst();
-		} else {
-			return direction1.removeFirst();
-		}
+		exit(car);
 	}
 
 
+
 	/**
-	 * print the railroad enter message
+	 * print the railroad enter message, and add in queue
 	 */
 	public void enter(Car car) {
-		System.out.println("Car " + car.getId() + " from side number " + car.getStartDirection() + " has stopped by the railroad");
+		if (car.getStartDirection() == 0) {
+			synchronized (direction0) {
+				System.out.println("Car " + car.getId() + " from side number " + car.getStartDirection() + " has stopped by the railroad");
+				direction0.addLast(car);
+			}
+		} else {
+			synchronized (direction1) {
+				System.out.println("Car " + car.getId() + " from side number " + car.getStartDirection() + " has stopped by the railroad");
+				direction1.addLast(car);
+			}
+		}
 	}
 
 	/**
-	 * print the railroad exit message
+	 * print the railroad exit message, and delete from queue
 	 */
 	public void exit(Car car) {
-		System.out.println("Car " + car.getId() + " from side number " + car.getStartDirection() + " has started driving");
+		Car leavingCar;
+		if (car.getStartDirection() == 0) {
+			synchronized (direction0) {
+				leavingCar = direction0.removeFirst();
+				System.out.println("Car " + leavingCar.getId() + " from side number " + leavingCar.getStartDirection() + " has started driving");
+			}
+		} else {
+			synchronized (direction1) {
+				leavingCar = direction1.removeFirst();
+				System.out.println("Car " + leavingCar.getId() + " from side number " + leavingCar.getStartDirection() + " has started driving");
+			}
+		}
 	}
 }
