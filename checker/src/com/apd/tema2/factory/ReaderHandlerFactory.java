@@ -121,7 +121,12 @@ public class ReaderHandlerFactory {
             case "simple_maintenance" -> new ReaderHandler() {
                 @Override
                 public void handle(final String handlerType, final BufferedReader br) throws IOException {
-                    
+                    Main.intersection = IntersectionFactory.getIntersection("simple_maintenance");
+                    SimpleMaintenance s = (SimpleMaintenance) Main.intersection;
+
+                    String[] line = br.readLine().split(" ");
+                    int maxCars = Integer.parseInt(line[0]);
+                    s.setMaxCarsToPass(maxCars);
                 }
             };
             case "complex_maintenance" -> new ReaderHandler() {
